@@ -55,7 +55,7 @@ Cenário 4 - Verificar a tabela de dados do cubo AB - Atividade Coletiva
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Atividades Coletivas
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 4 - Verificar a tabela de dados do cubo AB - Cadastro de Atendimento Odontológico
+Cenário 5 - Verificar a tabela de dados do cubo AB - Cadastro de Atendimento Odontológico
     [Tags]    cad_atend_odonto
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -66,7 +66,7 @@ Cenário 4 - Verificar a tabela de dados do cubo AB - Cadastro de Atendimento Od
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Atendimentos  
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 5 - Verificar a tabela de dados do cubo AB - Cadastro Domiciliar
+Cenário 6 - Verificar a tabela de dados do cubo AB - Cadastro Domiciliar
     [Tags]    cad_domiciliar
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -77,7 +77,7 @@ Cenário 5 - Verificar a tabela de dados do cubo AB - Cadastro Domiciliar
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Moradores
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 6 - Verificar a tabela de dados do cubo AB - Cadastro Familiar
+Cenário 7 - Verificar a tabela de dados do cubo AB - Cadastro Familiar
     [Tags]    cad_familiar
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -88,7 +88,7 @@ Cenário 6 - Verificar a tabela de dados do cubo AB - Cadastro Familiar
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Membros das Famílias
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 7 - Verificar a tabela de dados do cubo AB - Cadastro Individual
+Cenário 8 - Verificar a tabela de dados do cubo AB - Cadastro Individual
     [Tags]    cad_individual
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -99,7 +99,7 @@ Cenário 7 - Verificar a tabela de dados do cubo AB - Cadastro Individual
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Total de Pacientes Cadastrados
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 8 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Acima de 2 Anos
+Cenário 9 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Acima de 2 Anos
     [Tags]    consumo_alimentar_2a
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -110,7 +110,7 @@ Cenário 8 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Acima 
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Total de Pacientes por Consumo
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 9 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Até 6 Meses
+Cenário 10 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Até 6 Meses
     [Tags]    consumo_alimentar_6m
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -121,7 +121,7 @@ Cenário 9 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Até 6
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Total de Pacientes por Consumo
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 10 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - De 6 a 23 Meses
+Cenário 11 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - De 6 a 23 Meses
     [Tags]    consumo_alimentar_6a23m
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -132,7 +132,7 @@ Cenário 10 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - De 6 
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Total de Pacientes por Consumo
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 11 - Verificar a tabela de dados do cubo AB - Procedimentos
+Cenário 12 - Verificar a tabela de dados do cubo AB - Procedimentos
     [Tags]    procedimentos
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -143,7 +143,7 @@ Cenário 11 - Verificar a tabela de dados do cubo AB - Procedimentos
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Procedimentos
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 12 - Verificar a tabela de dados do cubo AB - Procedimentos Consolidados
+Cenário 13 - Verificar a tabela de dados do cubo AB - Procedimentos Consolidados
     [Tags]    procedimentos_consolidados
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -154,7 +154,7 @@ Cenário 12 - Verificar a tabela de dados do cubo AB - Procedimentos Consolidado
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Procedimentos
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 13 - Verificar a tabela de dados do cubo AB - Vacinação
+Cenário 14 - Verificar a tabela de dados do cubo AB - Vacinação
     [Tags]    vacinacao
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -165,7 +165,7 @@ Cenário 13 - Verificar a tabela de dados do cubo AB - Vacinação
     Então o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Gestante
     E o último cliente da lista deve ser "Mangaratiba"
 
-Cenário 14 - Verificar a tabela de dados do cubo AB - Visita Domiciliar
+Cenário 15 - Verificar a tabela de dados do cubo AB - Visita Domiciliar
     [Tags]    visita_domiciliar
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral

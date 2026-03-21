@@ -168,7 +168,7 @@ dê um clique em Qtd de Atividades Coletivas dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Atividades Coletivas
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 4 - Verificar a tabela de dados do cubo AB - Cadastro de Atendimento Odontológico
+# Cenário 5 - Verificar a tabela de dados do cubo AB - Cadastro de Atendimento Odontológico
 clique em AB - Cadastro de Atendimento Odontológico dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -192,7 +192,7 @@ clique em AB - Cadastro de Atendimento Odontológico dentro do menu Select a cub
     
     Wait Until Page Does Not Contain    Carregando...    60s
 
-# Cenário 5 - Verificar a tabela de dados do cubo AB - Cadastro Domiciliar
+# Cenário 6 - Verificar a tabela de dados do cubo AB - Cadastro Domiciliar
 clique em AB - Cadastro Domiciliar dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -223,7 +223,7 @@ dê um clique em Qtd de Moradores Cadastrados dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Moradores
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-#Cenário 6 - Verificar a tabela de dados do cubo AB - Cadastro Familiar
+#Cenário 7 - Verificar a tabela de dados do cubo AB - Cadastro Familiar
 clique em AB - Cadastro Familiar dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -254,7 +254,7 @@ dê um clique em Qtd de Membros das Famílias dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Membros das Famílias
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 7 - Verificar a tabela de dados do cubo AB - Cadastro Individual
+# Cenário 8 - Verificar a tabela de dados do cubo AB - Cadastro Individual
 clique em AB - Cadastro Individual dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -285,7 +285,7 @@ dê um clique em Qtd de Total de Pacientes Cadastrados dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Total de Pacientes Cadastrados
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 8 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Acima de 2 Anos
+# Cenário 9 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Acima de 2 Anos
 clique em AB - Consumo Alimentar - Acima de 2 Anos dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -316,7 +316,7 @@ dê um clique em Qtd de Total de Pacientes por Consumo dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Total de Pacientes por Consumo
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 9 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Até 6 Meses
+# Cenário 10 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - Até 6 Meses
 clique em AB - Consumo Alimentar - Até 6 Meses dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -340,7 +340,7 @@ clique em AB - Consumo Alimentar - Até 6 Meses dentro do menu Select a cube
     
     Wait Until Page Does Not Contain    Carregando...    60s
 
-# Cenário 10 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - De 6 a 23 Meses
+# Cenário 11 - Verificar a tabela de dados do cubo AB - Consumo Alimentar - De 6 a 23 Meses
 clique em AB - Consumo Alimentar - De 6 a 23 Meses dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -364,7 +364,7 @@ clique em AB - Consumo Alimentar - De 6 a 23 Meses dentro do menu Select a cube
     
     Wait Until Page Does Not Contain    Carregando...    60s
 
-# Cenário 11 - Verificar a tabela de dados do cubo AB - Procedimentos
+# Cenário 12 - Verificar a tabela de dados do cubo AB - Procedimentos
 clique em AB - Procedimentos dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -395,7 +395,7 @@ dê um clique em Qtd de Procedimentos dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Procedimentos
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 12 - Verificar a tabela de dados do cubo AB - Procedimentos Consolidados
+# Cenário 13 - Verificar a tabela de dados do cubo AB - Procedimentos Consolidados
 clique em AB - Procedimentos Consolidados dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -419,7 +419,7 @@ clique em AB - Procedimentos Consolidados dentro do menu Select a cube
     
     Wait Until Page Does Not Contain    Carregando...    60s
 
-# Cenário 13 - Verificar a tabela de dados do cubo AB - Vacinação
+# Cenário 14 - Verificar a tabela de dados do cubo AB - Vacinação
 clique em AB - Vacinação dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
@@ -450,7 +450,7 @@ dê um clique em Qtd Gestante dentro do menu Medidas
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd Gestante
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 14 - Verificar a tabela de dados do cubo AB - Visita Domiciliar
+# Cenário 15 - Verificar a tabela de dados do cubo AB - Visita Domiciliar
 clique em AB - Visita Domiciliar dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
