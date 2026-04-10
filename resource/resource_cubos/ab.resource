@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource   ${CURDIR}/../common/main.resource
+Resource   ${CURDIR}/../../common/main.resource
 
 *** Variables ***
 ${BTN_LOGIN}    //button[@id='loginbtn']

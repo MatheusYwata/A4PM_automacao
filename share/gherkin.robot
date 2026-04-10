@@ -15,11 +15,4 @@ E ${keyword}
 Então ${keyword}
     Run Keyword  ${keyword}
 
-Cuando ${keyword}
-    Run Keyword  ${keyword}
 
-Y ${keyword}
-    Run Keyword  ${keyword}
-
-Luego ${keyword}
-    Run Keyword  ${keyword}

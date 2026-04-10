@@ -1,6 +1,6 @@
 *** Settings ***
 
-Resource   ${CURDIR}/../common/main.resource
+Resource   ${CURDIR}/../../common/main.resource
 
 *** Variables ***
 ${BTN_LOGIN}    //button[@id='loginbtn']
@@ -13,11 +13,9 @@ ${CLIENTE_2}    xpath=//ul[contains(@class,'d_hierarchy')]//a[normalize-space()=
 ${TABELA}    id=table_13
 ${ULTIMO_CLIENTE}    xpath=//*[@id="table_13"]//tbody/tr[last()]/th/div
 
-
-
 *** Keywords ***
 
-# Cenário 1 - Verificar a tabela de dados do cubo Esus - Boletins de Emergência
+# Cenário 1 - Verificar a tabela de dados do cubo PEP - Atendimento Ambulatorial
 o usuário esteja na página de login e acesse com login válido
     Wait Until Element Is Visible    id=username    10s
     Click Element    id=username
@@ -34,9 +32,10 @@ acesse o menu lateral
 
 clique em Explorar Nova Análise
     Wait Until Element Is Enabled    ${EXP_NOVA_ANALISE}    
-    Wait Until Keyword Succeeds    10s    1s    Click Element    ${EXP_NOVA_ANALISE}   
+    Wait Until Keyword Succeeds    10s    1s    Click Element    ${EXP_NOVA_ANALISE}  
+    Sleep    5s
 
-clique em Esus - Boletins de Emergência dentro do menu Select a cube
+clique em PEP - Atendimento Ambulatorial dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -46,7 +45,7 @@ clique em Esus - Boletins de Emergência dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Atendimentos%20de%20Emergencia%20-%20Boletins
+    ...    a4pm/a4pm/a4pm/Atendimento%20Ambulatorial
     Sleep    2s
 
     Execute Javascript
@@ -60,11 +59,11 @@ clique em Esus - Boletins de Emergência dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
@@ -72,9 +71,10 @@ clique em Esus - Boletins de Emergência dentro do menu Select a cube
 
     Wait Until Page Does Not Contain    Carregando...    60s
 
-dê um clique em Qtd de Boletins dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Boletins - Atendimentos"]
-    Click Element    css=a[measure="Qtd de Boletins - Atendimentos"]
+
+dê um clique em Qtd de Atendimentos Ambulatoriais dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Atendimentos Ambulatoriais"]
+    Click Element    css=a[measure="Qtd de Atendimentos Ambulatoriais"]
 
 clicar em Cliente dentro do menu Dimensões > Cliente
         Wait Until Element Is Visible    ${CLIENTE}    20s
@@ -86,14 +86,15 @@ clicar em Cliente dentro do menu Dimensões > Cliente
     Click Element
     ...    ${CLIENTE_2}
 
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Boletins  
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Atendimentos Ambulatoriais    
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
 o último cliente da lista deve ser "Mangaratiba"    
     Element Text Should Be    ${ULTIMO_CLIENTE}    Mangaratiba
 
-# Cenário 2 - Verificar a tabela de dados do cubo AB - Atendimento Domiciliar
-clique em Esus - Consultas dentro do menu Select a cube
+# Cenário 2 - Verificar a tabela de dados do cubo PEP - Atendimento Individual AB
+
+clique em PEP - Atendimento Individual AB dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -103,7 +104,7 @@ clique em Esus - Consultas dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Consultas
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Atendimento%20Individual%20AB
     Sleep    2s
 
     Execute Javascript
@@ -117,11 +118,11 @@ clique em Esus - Consultas dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
@@ -129,17 +130,306 @@ clique em Esus - Consultas dentro do menu Select a cube
 
     Wait Until Page Does Not Contain    Carregando...    60s
 
+
+dê um clique em Qtd de Atendimentos dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Atendimentos"]
+    Click Element    css=a[measure="Qtd de Atendimentos"]
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Atendimentos   
+    Wait Until Element Is Visible    ${TABELA}    timeout=120s
+
+# Cenário 3 - Verificar a tabela de dados do cubo PEP - Atendimento Individual AB - Anamneses
+
+clique em PEP - Atendimento Individual AB - Anamneses dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Anamneses
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Wait Until Page Does Not Contain    Carregando...    60s
+
+dê um clique em Qtd de Anamneses dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Anamneses"]
+    Click Element    css=a[measure="Qtd de Anamneses"]
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Anamneses  
+    Wait Until Element Is Visible    ${TABELA}    timeout=120s
+
+# Cenário 4 - Verificar a tabela de dados do cubo PEP - Atendimentos Odontológicos - AB
+
+clique em PEP - Atendimentos Odontológicos - AB dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Atendimentos%20Odontologicos%20-%20AB
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Wait Until Page Does Not Contain    Carregando...    60s
+
+
+
+# Cenário 5 - Verificar a tabela de dados do cubo PEP - Atendimentos de Emergência por Profissional
+
+clique em PEP - Atendimentos de Emergência por Profissional dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Atendimentos%20por%20Profissional%20-%20Atendimentos
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+dê um clique em Atendimentos por Profissional dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Atendimentos por Profissional"]
+    Click Element    css=a[measure="Atendimentos por Profissional"]
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Atendimentos por Profissional
+    Wait Until Element Is Visible    ${TABELA}    timeout=120s
+
+# Cenário 6 - Verificar a tabela de dados do cubo PEP - Atendimentos de Emergência por Registro
+clique em PEP - Atendimentos de Emergência por Registro dentro do menu Select a cube    
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Atendimentos%20de%20Emergencia%20-%20Atendimentos
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+dê um clique em Atendimentos por Registros dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Atendimentos por Registros"]
+    Click Element    css=a[measure="Atendimentos por Registros"]
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Atendimentos por Registros
+    Wait Until Element Is Visible    ${TABELA}    timeout=120s
+
+# Cenário 7 - Verificar a tabela de dados do cubo PEP - Boletins de Emergência
+clique em PEP - Boletins de Emergência dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Boletins%20de%20Emergencia
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+dê um clique em Qtd de Boletins dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Boletins"]
+    Click Element    css=a[measure="Qtd de Boletins"]
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Boletins
+    Wait Until Element Is Visible    ${TABELA}    timeout=120s
+
+# Cenário 8 - Verificar a tabela de dados do cubo PEP - Cadastro Atendimento Odontógico AB
+
+clique em PEP - Cadastro Atendimento Odontógico AB dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Atendimento%20Odontologico
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+# Cenário 9 - Verificar a tabela de dados do cubo PEP - Consulta de Atenção Básica
+clique em PEP - Consulta de Atenção Básica dentro do menu Select a cube
+        Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Consulta%20de%20Atencao%20Basica
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
 
 dê um clique em Qtd de Consultas dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Consultas Disponibilizadas"]
-    Click Element    css=a[measure="Qtd de Consultas Disponibilizadas"]
+    Wait Until Element Is Visible    css=a[measure="Qtd de Consultas"]
+    Click Element    css=a[measure="Qtd de Consultas"]
 
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Consultas Disponilizadas  
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Consultas
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 3 - Verificar a tabela de dados do cubo Esus - Decartes de Produtos
+# Cenário 10 - Verificar a tabela de dados do cubo PEP - Encaminhamentos
 
-clique em Esus - Decartes de Produtos dentro do menu Select a cube
+clique em PEP - Encaminhamentos dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -149,7 +439,7 @@ clique em Esus - Decartes de Produtos dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Descartes%20de%20Produtos
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Encaminhamentos
     Sleep    2s
 
     Execute Javascript
@@ -163,29 +453,26 @@ clique em Esus - Decartes de Produtos dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
+dê um clique em Qtd de Encaminhamentos dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Encaminhamentos"]
+    Click Element    css=a[measure="Qtd de Encaminhamentos"]
 
-
-dê um clique em Qtd de Produtos Descartados dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Produtos Descartados"]
-    Click Element    css=a[measure="Qtd de Produtos Descartados"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Produtos Descartados 
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Encaminhamentos
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 4 - Verificar a tabela de dados do cubo Esus - Escala de Consultas
 
-clique em Esus - Escala de Consultas dentro do menu Select a cube
+# Cenário 11 - Verificar a tabela de dados do cubo PEP - Escuta Inicial
+clique em PEP - Escuta Inicial dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -195,7 +482,7 @@ clique em Esus - Escala de Consultas dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Escala%20de%20Consultas
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Escuta%20Inicial
     Sleep    2s
 
     Execute Javascript
@@ -209,28 +496,25 @@ clique em Esus - Escala de Consultas dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
+dê um clique em Qtd de Escutas dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Escutas"]
+    Click Element    css=a[measure="Qtd de Escutas"]
 
-
-dê um clique em Qtd de Escalas dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Escalas"]
-    Click Element    css=a[measure="Qtd de Escalas"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Escalas
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Escutas
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 5 - Verificar a tabela de dados do cubo Esus - Escala de Exames
-clique em Esus - Escala de Exames dentro do menu Select a cube
+#Cenário 12 - Verificar a tabela de dados do cubo PEP - Procedimentos AB
+clique em PEP - Procedimentos AB dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -240,7 +524,7 @@ clique em Esus - Escala de Exames dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Escala%20de%20Exames
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Procedimentos
     Sleep    2s
 
     Execute Javascript
@@ -254,29 +538,25 @@ clique em Esus - Escala de Exames dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
+dê um clique em Qtd de Procedimentos dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Procedimentos"]
+    Click Element    css=a[measure="Qtd de Procedimentos"]
 
-
-dê um clique em Qtd Total de Escalas dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd Total de Escalas"]
-    Click Element    css=a[measure="Qtd Total de Escalas"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd Total de Escalas
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Procedimentos
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 6 - Verificar a tabela de dados do cubo Esus - Exame
-
-clique em Esus - Exame dentro do menu Select a cube
+# Cenário 13 - Verificar a tabela de dados do cubo PEP - Procedimentos Ambulatoriais
+clique em PEP - Procedimentos Ambulatoriais dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -286,7 +566,7 @@ clique em Esus - Exame dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Exames
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Procedimentos%20Ambulatoriais
     Sleep    2s
 
     Execute Javascript
@@ -300,29 +580,98 @@ clique em Esus - Exame dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
+# Cenário 14 - Verificar a tabela de dados do cubo PEP - Procedimentos Emergenciais
+clique em PEP - Procedimentos Emergenciais dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Procedimentos%20Emergenciais
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
 
 
-dê um clique em Qtd de Exames Disponibilizados dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Exames Disponibilizados"]
-    Click Element    css=a[measure="Qtd de Exames Disponibilizados"]
+# Cenário 15 - Verificar a tabela de dados do cubo PEP - Receitas
 
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Exames Disponibilizados
+clique em PEP - Receitas dentro do menu Select a cube
+    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
+    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
+    Sleep    2s
+
+    Wait Until Element Is Visible    css=select.cubes    20s
+    Sleep    1s
+
+    Select From List By Value
+    ...    css=select.cubes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Receitas
+    Sleep    2s
+
+    Execute Javascript
+    ...  var s=document.querySelector("select.cubes");
+    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
+    Sleep    2s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.new_query()
+    Sleep    10s
+
+    Execute Javascript
+    ...    Saiku.tabs._tabs[0].content.sync_query()
+    Sleep    10s
+
+    Wait Until Element Is Visible    ${OKAY}    10s    
+    Click Element    ${OKAY}
+    Sleep    3s
+
+dê um clique em Qtd de Medicamentos Receitados dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Medicamentos Receitados"]
+    Click Element    css=a[measure="Qtd de Medicamentos Receitados"]
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Medicamentos Receitados
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 7 - Verificar a tabela de dados do cubo Esus - Fila de Consultas
+# Cenário 16 - Verificar a tabela de dados do cubo PEP - SOAP
 
-clique em Esus - Fila de Consultas dentro do menu Select a cube
+clique em PEP - SOAP dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -332,7 +681,7 @@ clique em Esus - Fila de Consultas dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Fila%20de%20Consultas
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Soap
     Sleep    2s
 
     Execute Javascript
@@ -346,29 +695,26 @@ clique em Esus - Fila de Consultas dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
+dê um clique em Qtd de SOAP dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de SOAP"]
+    Click Element    css=a[measure="Qtd de SOAP"]
 
-
-dê um clique em Tempo Médio em Dias Aguardando na Fila dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Tempo medio em dias aguardando na Fila"]
-    Click Element    css=a[measure="Tempo medio em dias aguardando na Fila"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Tempo Médio em Dias Aguardando na Fila
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de SOAP 
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 8 - Verificar a tabela de dados do cubo Esus - Fila de Exames
+# Cenário 17 - Verificar a tabela de dados do cubo PEP - Solicitação de Exames
 
-clique em Esus - Fila de Exames dentro do menu Select a cube
+clique em PEP - Solicitação de Exames dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -378,7 +724,7 @@ clique em Esus - Fila de Exames dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Fila%20de%20Exames
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Solicitacao%20de%20Exames
     Sleep    2s
 
     Execute Javascript
@@ -392,67 +738,26 @@ clique em Esus - Fila de Exames dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
+dê um clique em Qtd de Exames dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd de Exames"]
+    Click Element    css=a[measure="Qtd de Exames"]
 
-# Cenário 9 - Verificar a tabela de dados do cubo Esus - Fila de Exames Subprocedimentos
-
-clique em Esus - Fila de Exames Subprocedimentos dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Fila%20de%20Exames%20Subprocedimentos
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-
-dê um clique em Valor dos Subprocedimentos Agendados dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Valor dos Subprocedimentos Agendados"]
-    Click Element    css=a[measure="Valor dos Subprocedimentos Agendados"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Valor dos Subprocedimentos Agendados
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Exames 
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
 
-# Cenário 10 - Verificar a tabela de dados do cubo Esus - Fila de Internações
+# Cenário 18 - Verificar a tabela de dados do cubo PEP - Vacinação
 
-clique em Esus - Fila de Internações dentro do menu Select a cube
+clique em PEP - Vacinação dentro do menu Select a cube
     Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
@@ -462,7 +767,7 @@ clique em Esus - Fila de Internações dentro do menu Select a cube
 
     Select From List By Value
     ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Fila%20de%20Internacoes
+    ...    a4pm/a4pm/a4pm/PEP%20-%20Vacinacao
     Sleep    2s
 
     Execute Javascript
@@ -476,577 +781,20 @@ clique em Esus - Fila de Internações dentro do menu Select a cube
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
+    Sleep    10s
 
     Execute Javascript
     ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
+    Sleep    10s
 
     Wait Until Element Is Visible    ${OKAY}    10s    
     Click Element    ${OKAY}
     Sleep    3s
 
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-
-# Cenário 11 - Verificar a tabela de dados do cubo Esus - Internação
-
-clique em Esus - Internação dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Internacao
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Internações dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Internacoes"]
-    Click Element    css=a[measure="Qtd de Internacoes"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Internações
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 12 - Verificar a tabela de dados do cubo Esus - Movimentação de Produtos
-
-clique em Esus - Movimentação de Produtos dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Movimentacao%20de%20Produtos
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Valor do Produto dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Valor do Produto"]
-    Click Element    css=a[measure="Valor do Produto"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Valor do Produto
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 13 - Verificar a tabela de dados do cubo Esus - Paciente Dia internação
-
-clique em Esus - Paciente Dia internação dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Paciente%20Dia%20Internacao
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd Pacientes/Dia dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd Pacientes/Dia"]
-    Click Element    css=a[measure="Qtd Pacientes/Dia"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd Pacientes/Dia
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 14 - Verificar a tabela de dados do cubo Esus - Pendências da Fila de Consultas
-
-clique em Esus - Pendências da Fila de Consultas dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Pendencias%20Fila%20de%20Consultas
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Pacientes com Pendências dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Pacientes com Pendencias"]
-    Click Element    css=a[measure="Qtd de Pacientes com Pendencias"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Pacientes com Pendências
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 15 - Verificar a tabela de dados do cubo Esus - Pendências da Fila de Exames
-
-clique em Esus - Pendências da Fila de Exames dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Pendencias%20Fila%20de%20Exames
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-# Cenário 16 - Verificar a tabela de dados do cubo Esus - Situação Diária dos Leitos
-clique em Esus - Situação Diária dos Leitos dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20Diaria%20Leitos
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Leitos Operacionais/Dia dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Leitos Operacionais/Dia"]
-    Click Element    css=a[measure="Qtd de Leitos Operacionais/Dia"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Leitos Operacionais/Dia
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 17 - Verificar a tabela de dados do cubo Esus - Situação da Fila de Consultas
-clique em Esus - Situação da Fila de Consultas dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20da%20Fila%20de%20Consultas
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Pacientes Aguardando na Fila dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Pacientes Aguardando na Fila"]
-    Click Element    css=a[measure="Qtd de Pacientes Aguardando na Fila"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Pacientes Aguardando na Fila
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 18 - Verificar a tabela de dados do cubo Esus - Situação da Fila de Exames
-
-clique em Esus - Situação da Fila de Exames dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20da%20Fila%20de%20Exames
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-# Cenário 19 - Verificar a tabela de dados do cubo Esus - Situação da Fila de Internação
- 
-clique em Esus - Situação da Fila de Internação dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20da%20Fila%20de%20Internacao
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-# Cenário 20 - Verificar a tabela de dados do cubo Esus - Situação de Leitos
-
-clique em Esus - Situação de Leitos dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20de%20Leitos
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Leitos dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Leitos"]
-    Click Element    css=a[measure="Qtd de Leitos"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Leitos
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 21 - Verificar a tabela de dados do cubo Esus - Situação dos Atendimentos de Emergência
-
-clique em Esus - Situação dos Atendimentos de Emergência dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20Atual%20dos%20Boletins%20Atendimentos%20de%20Emergencia
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Atendimento de Emergência dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Atendimento de Emergencia"]
-    Click Element    css=a[measure="Qtd de Atendimento de Emergencia"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Atendimento de Emergência
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 22 - Verificar a tabela de dados do cubo Esus - Situação dos Boletins de Emergência
-
-clique em Esus - Situação dos Boletins de Emergência dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Situacao%20Atual%20dos%20Boletins%20de%20Emergencia
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Boletins de Emergência dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Boletins de Emergencia"]
-    Click Element    css=a[measure="Qtd de Boletins de Emergencia"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Boletins de Emergência
-    Wait Until Element Is Visible    ${TABELA}    timeout=120s
-
-# Cenário 23 - Verificar a tabela de dados do cubo Esus - Tranferências de Internações
-
-clique em Esus - Tranferências de Internações dentro do menu Select a cube
-    Wait Until Page Contains Element    xpath=//iframe[contains(@src,"saiku-ui")]    120s
-    Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
-    Sleep    2s
-
-    Wait Until Element Is Visible    css=select.cubes    20s
-    Sleep    1s
-
-    Select From List By Value
-    ...    css=select.cubes
-    ...    a4pm/a4pm/a4pm/Transferencias%20de%20Internacao
-    Sleep    2s
-
-    Execute Javascript
-    ...  var s=document.querySelector("select.cubes");
-    ...  s.dispatchEvent(new Event('change',{bubbles:true}));
-    Sleep    2s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.new_query()
-    Sleep    3s
-
-    Execute Javascript
-    ...    Saiku.tabs._tabs[0].content.sync_query()
-    Sleep    3s
-
-    Wait Until Element Is Visible    ${OKAY}    10s    
-    Click Element    ${OKAY}
-    Sleep    3s
-
-    Wait Until Page Does Not Contain    Carregando...    60s
-
-dê um clique em Qtd de Movimentações dentro do menu Medidas
-    Wait Until Element Is Visible    css=a[measure="Qtd de Movimentacoes"]
-    Click Element    css=a[measure="Qtd de Movimentacoes"]
-
-o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Movimentações
+dê um clique em Qtd Gestante dentro do menu Medidas
+    Wait Until Element Is Visible    css=a[measure="Qtd Gestante"]
+    Click Element    css=a[measure="Qtd Gestante"]
+    
+
+o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd Gestante 
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
