@@ -6,7 +6,7 @@ Resource    ${CURDIR}/../../share/setup_teardown.robot
 Resource    ${CURDIR}/../../resource/resource_relatorios/covid.resource
 
 
-Test Setup      abrir site
+Test Setup      abrir site igorando erros de certificado
 Test Teardown   fechar navegador
 
 *** Test Cases ***
@@ -31,13 +31,13 @@ Cenário 2 - Verificar Triagem Covid-19 - Nominal
     Quando clicar na seleção de Código do Cliente
     Então Mangaratiba deve aparecer entre as opções
 
-Cenário 3 - Verificar Triagem Covid-19 - Status dos Atendimento
+Cenário 3 - Verificar Triagem Covid-19 - Status do Atendimento
     [Tags]    triagem_status
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
     E clique em Relatórios
     E clique em Covid-19
-    E clique em Triagem Covid-19 - Status dos Atendimento
+    E clique em Triagem Covid-19 - Status do Atendimento
     Quando clicar na seleção de Código do Cliente
     Então Mangaratiba deve aparecer entre as opções
 

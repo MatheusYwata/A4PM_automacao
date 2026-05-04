@@ -6,7 +6,7 @@ Resource    ${CURDIR}/../../share/setup_teardown.robot
 Resource    ${CURDIR}/../../resource/resource_relatorios/exames.resource
 
 
-Test Setup      abrir site
+Test Setup      abrir site igorando erros de certificado
 Test Teardown   fechar navegador
 
 *** Test Cases ***

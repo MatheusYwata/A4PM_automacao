@@ -6,7 +6,7 @@ Resource    ${CURDIR}/../../share/setup_teardown.robot
 Resource    ${CURDIR}/../../resource/resource_relatorios/internacao.resource
 
 
-Test Setup      abrir site
+Test Setup      abrir site headless
 Test Teardown   fechar navegador
 
 *** Test Cases ***
@@ -121,17 +121,7 @@ Cenário 11 - Verificar Pacientes Internados por Localização Física
     Quando clicar na seleção de Código do Cliente
     Então Mangaratiba deve aparecer entre as opções
 
-Cenário 12 - Verificar Pacientes Internados por Localização Física
-    [Tags]    pacientes_local
-    Dado que o usuário esteja na página de login e acesse com login válido
-    E acesse o menu lateral
-    E clique em Relatórios
-    E clique em Internação
-    E clique em Pacientes Internados por Localização Física
-    Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
-
-Cenário 13 - Verificar Taxa de Mortalidade com Média de Permanência
+Cenário 12 - Verificar Taxa de Mortalidade com Média de Permanência
     [Tags]    taxa_mortalidade
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -141,7 +131,7 @@ Cenário 13 - Verificar Taxa de Mortalidade com Média de Permanência
     Quando clicar na seleção de Código do Cliente
     Então Mangaratiba deve aparecer entre as opções
 
-Cenário 14 - Verificar Taxa de Ocupação por Setor
+Cenário 13 - Verificar Taxa de Ocupação por Setor
     [Tags]    taxa_ocupacao
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
@@ -151,7 +141,7 @@ Cenário 14 - Verificar Taxa de Ocupação por Setor
     Quando clicar na seleção de Código do Cliente
     Então Mangaratiba deve aparecer entre as opções
 
-Cenário 15 - Verificar Taxa de Patologia da Internação
+Cenário 14 - Verificar Taxa de Patologia da Internação
     [Tags]    taxa_patologia
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral

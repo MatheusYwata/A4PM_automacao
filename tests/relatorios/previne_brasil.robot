@@ -16,7 +16,7 @@ Cenário 1 - Verificar Relatórios
     Dado que o usuário esteja na página de login e acesse com login válido
     E acesse o menu lateral
     E clique em Relatórios
-    E clique em Consultas
-    E clique em Relatórios
+    E clique em Previne Brasil
+    E clique na opção Relatórios
     Quando clicar na seleção de Código do Cliente
     Então Mangaratiba deve aparecer entre as opções
