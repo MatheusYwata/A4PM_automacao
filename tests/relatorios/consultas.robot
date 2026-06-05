@@ -19,7 +19,7 @@ Cenário 1 - Verificar Consultas Agendadas pela Fila
     E clique em Consultas
     E clique em Consultas Agendadas pela Fila
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 2 - Verificar Consultas por Objetivo
     [Tags]    consultas_objetivo
@@ -29,7 +29,7 @@ Cenário 2 - Verificar Consultas por Objetivo
     E clique em Consultas
     E clique em Consultas por Objetivo
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 3 - Verificar Entradas e Saídas na Fila de Consultas
     [Tags]    entradas_saidas
@@ -39,7 +39,7 @@ Cenário 3 - Verificar Entradas e Saídas na Fila de Consultas
     E clique em Consultas
     E clique em Entradas e Saídas na Fila de Consultas
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 4 - Verificar Entradas na Fila de Consultas
     [Tags]    entradas
@@ -49,7 +49,7 @@ Cenário 4 - Verificar Entradas na Fila de Consultas
     E clique em Consultas
     E clique em Entradas na Fila de Consultas
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 5 - Verificar Saídas na Fila de Consultas
     [Tags]    saidas
@@ -59,7 +59,7 @@ Cenário 5 - Verificar Saídas na Fila de Consultas
     E clique em Consultas
     E clique em Saídas na Fila de Consultas
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 6 - Verificar Tamanho da Fila de Consultas
     [Tags]    tamanho
@@ -69,7 +69,7 @@ Cenário 6 - Verificar Tamanho da Fila de Consultas
     E clique em Consultas
     E clique em Tamanho da Fila de Consultas
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 7 - Verificar Mensal de Consultas
     [Tags]    mensal
@@ -79,7 +79,7 @@ Cenário 7 - Verificar Mensal de Consultas
     E clique em Consultas
     E clique em Mensal de Consultas
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 8 - Verificar Mensal de Consultas por Profissional de Saúde
     [Tags]    mensal_profissional
@@ -89,7 +89,7 @@ Cenário 8 - Verificar Mensal de Consultas por Profissional de Saúde
     E clique em Consultas
     E clique em Mensal de Consultas por Profissional de Saúde
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 9 - Verificar Produtividade de Consultas
     [Tags]    produtividade
@@ -99,7 +99,7 @@ Cenário 9 - Verificar Produtividade de Consultas
     E clique em Consultas
     E clique em Produtividade de Consultas
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 10 - Verificar Produtividade de Usuários Saída da Fila
     [Tags]    produtividade_usuarios
@@ -109,7 +109,7 @@ Cenário 10 - Verificar Produtividade de Usuários Saída da Fila
     E clique em Consultas
     E clique em Produtividade de Usuários Saída da Fila
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções
 
 Cenário 11 - Verificar Saída da Fila por Usuários - Simplificado
     [Tags]    usuarios_simplif
@@ -119,4 +119,4 @@ Cenário 11 - Verificar Saída da Fila por Usuários - Simplificado
     E clique em Consultas
     E clique em Saída da Fila por Usuários - Simplificado
     Quando clicar na seleção de Código do Cliente
-    Então Mangaratiba deve aparecer entre as opções
+    Então Barra Mansa deve aparecer entre as opções

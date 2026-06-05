@@ -54,8 +54,8 @@ clicar na seleção de Código do Cliente
     Click Element    ${SELECT}
     Sleep    2s
 
-Mangaratiba deve aparecer entre as opções
-    Page Should Contain Element    xpath=//div[contains(.,'Código do Cliente')]/following::select[1]//option[contains(.,'Mangaratiba')]
+Barra Mansa deve aparecer entre as opções
+    Page Should Contain Element    xpath=//div[contains(.,'Código do Cliente')]/following::select[1]//option[contains(.,'Barra Mansa')]
 
 # Cenário 2 - Verificar Consultas por Objetivo
 clique em Consultas por Objetivo

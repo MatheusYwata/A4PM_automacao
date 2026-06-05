@@ -3,7 +3,7 @@
 Resource    ${CURDIR}/../../common/main.resource
 Resource    ${CURDIR}/../../share/gherkin.robot
 Resource    ${CURDIR}/../../share/setup_teardown.robot
-Resource    ${CURDIR}/../../resource/esus.resource
+Resource    ${CURDIR}/../../resource/resource_cubos/esus.resource
 
 
 Test Setup      abrir site
