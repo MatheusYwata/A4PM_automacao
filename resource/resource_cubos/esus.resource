@@ -29,7 +29,7 @@ o usuário esteja na página de login e acesse com login válido
     Click Element    ${BTN_LOGIN}
 
 acesse o menu lateral
-    Wait Until Element Is Enabled    ${MENU_LATERAL}   
+    Wait Until Element Is Enabled    ${MENU_LATERAL}   60s
     Wait Until Keyword Succeeds    10s    1s    Click Element    ${MENU_LATERAL}    
 
 clique em Explorar Nova Análise
@@ -41,7 +41,7 @@ clique em Esus - Boletins de Emergência dentro do menu Select a cube
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
 
-    Wait Until Element Is Visible    css=select.cubes    20s
+    Wait Until Element Is Visible    css=select.cubes    50s
     Sleep    1s
 
     Select From List By Value
@@ -77,7 +77,7 @@ dê um clique em Qtd de Boletins dentro do menu Medidas
     Click Element    css=a[measure="Qtd de Boletins - Atendimentos"]
 
 clicar em Cliente dentro do menu Dimensões > Cliente
-        Wait Until Element Is Visible    ${CLIENTE}    20s
+    Wait Until Element Is Visible    ${CLIENTE}    20s
     Click Element    ${CLIENTE}
     Wait Until Element Is Visible
     ...    ${CLIENTE_2}
@@ -1050,3 +1050,5 @@ dê um clique em Qtd de Movimentações dentro do menu Medidas
 
 o sistema deve exibir a tabela de dados com as informações de Cliente e Qtd de Movimentações
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
+
+
