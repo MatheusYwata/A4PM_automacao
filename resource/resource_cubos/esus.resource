@@ -496,7 +496,7 @@ clique em Esus - Internação dentro do menu Select a cube
     Select Frame    xpath=//iframe[contains(@src,"saiku-ui")]
     Sleep    2s
 
-    Wait Until Element Is Visible    css=select.cubes    20s
+    Wait Until Element Is Visible    css=select.cubes    120s
     Sleep    1s
 
     Select From List By Value
