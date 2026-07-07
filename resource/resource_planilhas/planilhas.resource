@@ -46,6 +46,8 @@ clicar em Mês da Internação e Dia da Internação dentro do menu Dimensões >
     Wait Until Element Is Visible    ${DIA_INTERNACAO}    30s
     Click Element    ${DIA_INTERNACAO}
 
+    # Sleep    6s
+
 
 clicar em Unidade de Saúde dentro do menu Dimensões > Unidade de Saúde
     # Expande o folder
@@ -61,6 +63,8 @@ clicar em Unidade de Saúde dentro do menu Dimensões > Unidade de Saúde
     ...    ${UNIDADE_SAUDE}
 
     Execute JavaScript    arguments[0].click();    ARGUMENTS    ${level}
+
+    Sleep    6s
 
 
 
@@ -79,11 +83,14 @@ clicar em Setor dentro do menu Dimensões > Setor
 
     Execute JavaScript    arguments[0].click();    ARGUMENTS    ${level}
 
+    Sleep    6s
+
 
 
 clicar em Mês da Internação dentro da Linha
     Wait Until Element Is Visible    ${MES_LINHA}    30s
-    Click Element    ${MES_LINHA}
+    Wait Until Keyword Succeeds    30s    1s   
+    ...     Click Element    ${MES_LINHA} 
 
 clicar no mês atual
     Wait Until Element Is Visible    ${MES_ATUAL}
@@ -94,10 +101,9 @@ clicar em OK
     Click Element    ${BTN_OK}
 
 clicar na seta verde para rodar a query
-    Wait Until Element Is Visible    ${RUN_QUERY}    10s 
-    Sleep    6s   
-    Click Element    ${RUN_QUERY}
-    Sleep    10s
+    Wait Until Element Is Visible    ${RUN_QUERY}    30s 
+    Wait Until Keyword Succeeds    30s    1s   
+    ...     Click Element    ${RUN_QUERY}
 
 o relatório for gerado com os dados corretos
     Wait Until Element Is Visible    ${TABELA}    timeout=120s
