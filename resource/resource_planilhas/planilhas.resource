@@ -18,7 +18,8 @@ ${UNIDADE_SAUDE}    xpath=(//a[@title='Unidade de Saúde' and contains(@class,'l
 ${SETOR_FOLDER}    xpath=//a[@title='Setor' and contains(@class,'folder_collapsed')]
 ${SETOR}    xpath=(//a[@title='Setor' and contains(@class,'level')])[1]
 ${MES_LINHA}    xpath=//a[@title='Mês da Internação'][normalize-space()='Mês da Internação']
-${MES_ATUAL}    xpath=//label[@class='caption' and normalize-space()='2026/JUN']
+${MES_ATUAL}    xpath=//label[@class='caption' and normalize-space()='2026/JUL']
+${MOVE_FORWARD}    //a[@id='add_members']
 ${BTN_OK}    //a[@href='#save']
 ${RUN_QUERY}    xpath=//a[@href='#run_query']
 ${EXPORT_CSV}    xpath=//a[@href='#export_csv']
@@ -95,10 +96,15 @@ clicar em Mês da Internação dentro da Linha
 clicar no mês atual
     Wait Until Element Is Visible    ${MES_ATUAL}
     Click Element    ${MES_ATUAL}
+    Sleep    1s
+    Wait Until Element Is Visible    ${MOVE_FORWARD}
+    Click Element    ${MOVE_FORWARD}
+    Sleep    1s
 
 clicar em OK
     Wait Until Element Is Visible    ${BTN_OK}    10s    
     Click Element    ${BTN_OK}
+    Sleep    1s
 
 clicar na seta verde para rodar a query
     Wait Until Element Is Visible    ${RUN_QUERY}    30s 
@@ -112,7 +118,7 @@ clicar em exportar para Excel
     Limpar Downloads
     Wait Until Element Is Visible    ${EXPORT_CSV}    10s 
     Click Element    ${EXPORT_CSV}
-    Sleep    5s
+    Sleep    2s
 
 o relatório será exportado com sucesso
     Validar Download CSV
